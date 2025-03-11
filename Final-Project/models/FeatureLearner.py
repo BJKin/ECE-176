@@ -1,14 +1,14 @@
 # Author: Brett Kinsella
 # Date: 3/9/2025
 # Description:
-# Implementation of the Context Encoder model trained using reconstruction loss (L2) from the paper "Context Encoders: Feature Learning by Inpainting"
+# Implementation of the context encoder feature learning model trained using reconstruction loss (L2) from the paper "Context Encoders: Feature Learning by Inpainting"
 #   by Deepak Pathak, Philipp Krahenbuhl, Jeff Donahue, Trevor Darrell, Alexei A. Efros
 #   https://arxiv.org/abs/1604.07379
 
 import torch.nn as nn
 
-
-# ALEXNET architecture used for the encoder with added batch normalization layers
+# Encoder
+# ALEXNET architecture used with added batch normalization layers
 # Leakky ReLu activation functions are used instead of ReLu with a negative slope of 0.2
 # Listed dimensions are  C X H x W
 # Designed for 227x227 input images
@@ -70,7 +70,7 @@ class Encoder(nn.Module):
 
 # Channel-wise fully connected layer followed by a 1x1 convolution layer
 # Implementaion of the channelwise fully connected layer was unclear in the original paper, so 
-#   a 1x1 depth-wise convolutional layer w` `   `s used to create the same effect
+#   a 1x1 depth-wise convolutional layer was used to create the same effect
 class ChannelWiseFC(nn.Module):
     def __init__(self):
         super(ChannelWiseFC, self).__init__()
@@ -89,7 +89,7 @@ class ChannelWiseFC(nn.Module):
         return x
 
 
-# Decoder architecture described in Context Encoder paper
+# Decoder
 class Decoder(nn.Module):
     def __init__(self):
         super(Decoder, self).__init__()
@@ -162,3 +162,32 @@ class ContextEncoder(nn.Module):
 
         return x
 
+
+# Classification model based on AlexNet architecture with pretrained encoder from Context Encoder
+# Leaky ReLu activation functions are used instead of ReLu with a negative slope of 0.2
+class AlexNetClassifier(nn.Module):
+    def __init__(self, pretrained_encoder, num_classes):
+        super(AlexNetClassifier, self).__init__()
+
+        # Load pretrained encoder
+        self.features = pretrained_encoder
+            
+        # Create fully-connected layers for classification
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(256 * 6 * 6, 4096),  # fc6
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.Dropout(0.5),
+            nn.Linear(4096, 4096),  # fc7
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.Dropout(0.5),
+            nn.Linear(4096, num_classes)  # fc8 (classification layer)
+        )
+        
+    
+    def forward(self, x):
+        x = self.features(x)
+        x = self.classifier(x)
+
+        return x
+    
