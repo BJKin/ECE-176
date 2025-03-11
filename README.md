@@ -144,11 +144,14 @@ This implementation is designed to work with landscape images. To prepare your d
 If you use this implementation, please cite the original paper:
 
 ```
-@inproceedings{pathak2016context,
-  title={Context Encoders: Feature Learning by Inpainting},
-  author={Pathak, Deepak and Krahenbuhl, Philipp and Donahue, Jeff and Darrell, Trevor and Efros, Alexei A.},
-  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  year={2016}
+@misc{pathak2016contextencodersfeaturelearning,
+      title={Context Encoders: Feature Learning by Inpainting}, 
+      author={Deepak Pathak and Philipp Krahenbuhl and Jeff Donahue and Trevor Darrell and Alexei A. Efros},
+      year={2016},
+      eprint={1604.07379},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/1604.07379}, 
 }
 ```
 
