@@ -68,7 +68,7 @@ ECE-176/
    ```
 ## Running the Jupyter Notebook
 
-The included Jupyter notebook (`inpainting.ipynb`) demonstrates the complete workflow:
+The included Jupyter notebook (`contextEncoders.ipynb`) demonstrates the complete workflow:
 
 ```bash
 jupyter notebook inpainting.ipynb

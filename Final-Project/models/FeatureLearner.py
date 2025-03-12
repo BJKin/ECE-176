@@ -69,7 +69,7 @@ class Encoder(nn.Module):
     
 
 # Channel-wise fully connected layer followed by a 1x1 convolution layer
-# Implementaion of the channelwise fully connected layer was unclear in the original paper, so 
+# Implementation of the channelwise fully connected layer was unclear in the original paper, so 
 #   a 1x1 depth-wise convolutional layer was used to create the same effect
 class ChannelWiseFC(nn.Module):
     def __init__(self):
