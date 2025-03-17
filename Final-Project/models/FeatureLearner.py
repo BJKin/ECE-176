@@ -1,4 +1,4 @@
-# Author: Brett Kinsella
+# Author: Brett Kinsella and Rohan Gujral
 # Date: 3/9/2025
 # Description:
 # Implementation of the context encoder feature learning model trained using reconstruction loss (L2) from the paper "Context Encoders: Feature Learning by Inpainting"

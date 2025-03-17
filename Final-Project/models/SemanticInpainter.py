@@ -1,4 +1,4 @@
-# Author: Brett Kinsella
+# Author: Brett Kinsella and Rohan Gujral
 # Date: 3/9/2025
 # Description:
 # Implementation of the context encoder semantic inpainting model trained using joint reconstruction loss (L2) and adversarial loss from the paper "Context Encoders: Feature Learning by Inpainting"
