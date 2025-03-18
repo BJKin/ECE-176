@@ -121,23 +121,13 @@ The notebook covers:
 
 ## Optimization Approaches
 
-While the original paper used the stochastic gradient descent solver ADAM for optimization purposes, we explore using more modern approaches to SGD such as RADAM or combining ADAMW with a learning rate scheduler such as the 1cycle policy to improve performance. In brief, we reimplement the exact neural network architecture described in Pathak et al., but utilize modern tools for ease of implementation and to enhance performance where possible.
+While the original paper used the stochastic gradient descent solver ADAM for optimization purposes, we used a more modern approach by combining ADAMW with a 1cycle learning rate scheduler to improve performance. In brief, we reimplement the exact neural network architecture described in Pathak et al., but utilize modern tools for ease of implementation and to enhance performance where possible.
 
 ## Dataset and Experiments
 
 For this implementation, we use a dataset composed of 12,000 images from the Kaggle landscape recognition dataset. The data set is composed of images that are divided into five distinct categories of landscapes: coast, desert, forest, glaciers, and mountains. For each image, a duplicate is created for which a certain amount of pixels are blocked out (image masking), and each pair is fed as training data to the network.
 
 The dataset is already split into training, validation, and testing groups. We also experiment with various sizes and locations of image masking, to see what effect, if any, it has on the final weights and biases. Not all of the images are the same size, so we manually resize the images to fixed dimensions before training and testing.
-
-### Dataset Preparation
-
-This implementation is designed to work with landscape images. To prepare your dataset:
-
-1. Organize your images into training, validation, and test sets
-2. Resize all images to the appropriate dimensions:
-   - 227×227 for the Feature Learning model
-   - 128×128 for the Semantic Inpainting model
-3. Create data loaders with appropriate transformations
 
 ## Citation
 
